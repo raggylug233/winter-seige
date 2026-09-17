@@ -131,6 +131,9 @@ def assign(rows, use_pins=True):
                 r["out"] = i >= STRONGHOLDS[sh]["cap"]   # beyond the top 20: attacks only
         return by_sh
     plan = {}
+    slots = sum(info["cap"] for info in STRONGHOLDS.values())
+    extra = rows[slots:]            # more squads than slots: the weakest sit out
+    rows = rows[:slots]
     remaining = list(rows)
     fixed = sum(cap * len(order) for order, cap in POOLS if cap is not None)
     for order, cap in POOLS:
@@ -149,14 +152,17 @@ def assign(rows, use_pins=True):
     for sh, info in STRONGHOLDS.items():
         assert sum(1 for v in plan.values() if v == sh) <= info["cap"], f"SH{sh} over capacity"
     plan.update(OVERRIDES)
+    for r in extra:
+        plan[(r["player"], r["squad"])] = 1
     by_sh = defaultdict(list)
-    for r in rows:
+    for r in rows + extra:
         r["target"] = plan[(r["player"], r["squad"])]
         by_sh[r["target"]].append(r)
     for sh, lst in by_sh.items():
         lst.sort(key=lambda r: -r["power"])
         for i, r in enumerate(lst):
             r["warden"] = i == 0
+            r["out"] = i >= STRONGHOLDS[sh]["cap"]
     return by_sh
 
 
