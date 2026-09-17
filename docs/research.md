@@ -30,7 +30,7 @@ Maximum Stars if every slot is filled (normal squads only): Empowered 20 × 3 = 
 
 ## Rules we're treating as confirmed
 - **Format:** our alliance against one other alliance. Preparation runs Wednesday–Thursday, Scouting on Friday (lineups visible, no stats), Battle on Saturday. Setups lock when Preparation ends.
-- **Squads:** each player has 2. A hero can be used in only one of them. The same squad both defends and attacks.
+- **Squads (in-game rules screen, `screenshots/rules4-how-to-play.png`):** each Chief sets up 2 and garrisons them in any friendly stronghold; the same squads attack in the Battle Phase. At the end of Preparation a set number of the most powerful squads in each stronghold form its garrison and add Stars; squads not selected can still attack. In the Scout Phase you can view the enemy garrison formations. In the Battle Phase you pick any squad in an unlocked enemy stronghold to attack.
 - **Fights:** each attack is one squad against one defending squad. No troops are lost.
 - **Hearts:** a defender loses 1 Heart per lost defense. At 0 Hearts, the stronghold loses all of that squad's Stars at once. Normal squads have **4 Hearts** and Wardens **5** (see the rule change below).
 - **Scoring:** see the rule change below.
@@ -50,6 +50,7 @@ Sources: Tonton Gaming, "Is Winter Siege now a FAIR battle? They FIXED it!" (htt
    2. If neither side is zeroed, the side with **more Stars left** wins.
    3. If Stars tie, the side with **higher total power among surviving troops** in its strongholds wins.
    4. If that also ties, the side whose Stars were reduced to that number **later** wins.
+   5. Special case (in-game rules screen, `screenshots/rules5-result.png`): if both sides have the same Stars before the Battle Phase *and* the same after it, both sides lose.
 2. **Hearts:** normal squads go from **3 to 4**. Wardens stay at **5** (3 + 2 extra).
 3. **Tier and matchmaking:** your starting tier now comes from your Alliance Championship tier, so the event is matched by AC tier instead of raw power. A loss earns +0 tier progress, a win +1, and a win streak more.
 
