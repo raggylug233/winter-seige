@@ -2,17 +2,21 @@
 """Generate index.html: the Winter Siege deployment plan.
 
 Reads data/squads.csv (rank, player, squad, rank_badge, power, current) and
-assigns every squad to a stronghold ("graded" layout, see docs/strategy.md):
+assigns every squad to a stronghold ("front-wardens" layout, see
+docs/strategy.md; 112 squads):
 
-  * ranks 1-20   -> Strongholds 2, 3 (10 each, snake): the wall in front of 1
-  * ranks 21-68  -> Strongholds 4, 5, 6 (16 each, snake): the enemy must
-                    clear one of these first; mid-strength squads make every
-                    front cost real attacks without wasting whales 3 ways
-  * ranks 69-88  -> Strongholds 2, 3 (10 more each)
-  * ranks 89-108 -> Stronghold 1 (reached last; 3 stars each, kept safe)
+  * ranks 1-2    -> Wardens of Strongholds 2 and 3
+  * ranks 3-5    -> Wardens of Strongholds 4, 5 and 6: a front can't be
+                    cleared without killing a 5-Heart whale
+  * ranks 6-23   -> Strongholds 2, 3 (9 each, snake): the wall in front of 1
+  * ranks 24-72  -> Strongholds 4, 5, 6 (snake): mid squads make every front
+                    cost real attacks; the empty slots land here
+  * ranks 73-92  -> Strongholds 2, 3 (10 more each)
+  * ranks 93-112 -> Stronghold 1 (reached last; 3 stars each, kept safe)
   * Warden       -> strongest squad in each stronghold
 
-Edit OVERRIDES to pin a squad somewhere; sim.py compares layouts.
+`python3 build.py <layout>` builds another layout from LAYOUTS into
+<layout>.html. Edit OVERRIDES to pin a squad somewhere; sim.py compares layouts.
 """
 import csv
 import html
@@ -32,12 +36,37 @@ STRONGHOLDS = {
     6: dict(tier="Primitive", stars=1, cap=20),
 }
 # (stronghold snake order, per-stronghold cap) for each pool, strongest first.
-POOLS = [
-    ([2, 3], 10),      # ranks 1-20
-    ([4, 5, 6], 16),   # ranks 21-68
-    ([2, 3], 10),      # ranks 69-88
-    ([1], 20),         # ranks 89-108
-]
+# A cap of None means "whatever is left after the fixed pools", so the empty
+# slots always land in that pool.
+LAYOUTS = {
+    # front-wardens: biggest two anchor 2/3, next three are front Wardens,
+    # then graded. Best in sim.py against every enemy tested.
+    "front-wardens": [
+        ([2, 3], 1),
+        ([4, 5, 6], 1),
+        ([2, 3], 9),
+        ([4, 5, 6], None),
+        ([2, 3], 10),
+        ([1], 20),
+    ],
+    # graded: wall of whales in 2/3, mid squads at the fronts, weakest in 1
+    "graded": [
+        ([2, 3], 10),
+        ([4, 5, 6], None),
+        ([2, 3], 10),
+        ([1], 20),
+    ],
+    # balanced: one whale Warden per stronghold (Gemini's idea), then graded
+    "balanced": [
+        ([1, 2, 3, 4, 5, 6], 1),
+        ([2, 3], 9),
+        ([4, 5, 6], None),
+        ([2, 3], 10),
+        ([1], 19),
+    ],
+}
+LAYOUT = "front-wardens"
+POOLS = LAYOUTS[LAYOUT]
 
 # (player, squad) -> stronghold.  Applied after the draft; the displaced
 # squad is NOT re-balanced, so keep overrides few.
@@ -64,17 +93,22 @@ def snake(order):
 def assign(rows):
     plan = {}
     remaining = list(rows)
+    fixed = sum(cap * len(order) for order, cap in POOLS if cap is not None)
     for order, cap in POOLS:
+        n = cap * len(order) if cap is not None else len(rows) - fixed
         gen = snake(order)
         count = defaultdict(int)
-        take, remaining = remaining[:cap * len(order)], remaining[cap * len(order):]
+        take, remaining = remaining[:n], remaining[n:]
+        per = cap if cap is not None else -(-n // len(order))
         for r in take:
             sh = next(gen)
-            while count[sh] >= cap:
+            while count[sh] >= per:
                 sh = next(gen)
             count[sh] += 1
             plan[(r["player"], r["squad"])] = sh
     assert not remaining, f"{len(remaining)} squads unassigned"
+    for sh, info in STRONGHOLDS.items():
+        assert sum(1 for v in plan.values() if v == sh) <= info["cap"], f"SH{sh} over capacity"
     plan.update(OVERRIDES)
     by_sh = defaultdict(list)
     for r in rows:
@@ -137,6 +171,12 @@ def player_table(rows):
 
 
 def main():
+    global POOLS, OUT
+    import sys
+    if len(sys.argv) > 1:
+        POOLS = LAYOUTS[sys.argv[1]]
+        if sys.argv[1] != LAYOUT:
+            OUT = ROOT / f"{sys.argv[1]}.html"
     rows = load()
     by_sh = assign(rows)
     total_stars = sum(stars_for(r, sh) for sh, lst in by_sh.items() for r in lst)
@@ -208,11 +248,11 @@ tr.warden {{ background:var(--warden); font-weight:600 }}
 
 <div class="rules">
   <div><h3>Why this layout</h3><ul>
-    <li>Stars are lost only when a squad loses all its Hearts. A weak squad dies in 4–5 attacks; a 1B+ squad forces morale-baiting first (floor 60%) and costs 15–30. The enemy will take the cheapest path: weakest front → the Advanced stronghold behind it → Stronghold 1.</li>
-    <li>The 20 strongest squads form the wall in 2 and 3: once a front falls, the only things reachable are worth 2★ and expensive to kill. Whales at the fronts would be 2/3 wasted (only one front gets attacked); whales in Stronghold 1 only matter after 59★ are already gone.</li>
-    <li>Mid-strength squads (ranks 21–68) hold the fronts so that breaking any front costs real attacks, and all three cost about the same.</li>
-    <li>Stronghold 1 is reached last, so it holds the weakest squads: 60★ that are only in danger after a front and an Advanced stronghold have both been cleared. Simulated against an equal enemy this layout loses ~45–110★ where "strongest in the core" loses ~85–155★. Against an enemy 15%+ stronger, our whales are no longer a toll and every layout loses 130–190★ — the layout only decides close matchups.</li>
-    <li>The 12 empty slots sit in the fronts, where a squad is worth 1★; Strongholds 1–3 are full. Placement doesn't affect attacking: every squad attacks at full strength wherever it is garrisoned.</li>
+    <li>Stars are lost only when a squad loses all its Hearts. A weak squad dies in 4–5 attacks; a 1B+ squad forces morale-baiting first (floor 60%) and costs 15–30. The enemy will take the cheapest path: a front → the Advanced stronghold behind it → Stronghold 1.</li>
+    <li>Each front's Warden is a whale (5 Hearts, 2★). A front can't be cleared — and the Advanced ring can't be opened — without killing one, so an enemy that can't bait a whale down never gets past the fronts. Mid-strength squads (ranks 24–72) fill the fronts so all three cost about the same.</li>
+    <li>The two biggest squads and the next 18 form the wall in Strongholds 2 and 3: once a front does fall, the reachable targets are worth 2★ and expensive.</li>
+    <li>Stronghold 1 is reached last, so it holds the weakest squads: 60★ that are only in danger after a front and an Advanced stronghold have both been cleared. Simulated against an equal enemy this layout loses ~50–110★ where "strongest in the core" loses ~85–155★; against a weaker enemy ~40–50★. Against an enemy 15%+ stronger, no layout holds (130–190★ lost) — placement decides close matchups.</li>
+    <li>The 8 empty slots sit in the fronts, where a squad is worth 1★; Strongholds 1–3 are full. Placement doesn't affect attacking: every squad attacks at full strength wherever it is garrisoned.</li>
   </ul></div>
   <div><h3>R4/R5 checklist</h3><ul>
     <li>Manage Squads → batch adjust during Preparation (Wed–Thu UTC). Lock is Thu 24:00 UTC.</li>

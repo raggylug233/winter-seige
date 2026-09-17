@@ -120,13 +120,13 @@ def layout(rows, pools):
 
 
 LAYOUTS = {
-    "graded (build.py): 2/3=1-20+69-88, fronts=21-68, 1=89-108": build.POOLS,
-    "graded30: 2/3=1-30+79-88, fronts=31-78, 1=89-108": [([2, 3], 15), ([4, 5, 6], 16), ([2, 3], 5), ([1], 20)],
-    "vault: 2/3=1-40, fronts=41-88, 1=89-108": [([2, 3], 20), ([4, 5, 6], 16), ([1], 20)],
-    "vault+: 2/3=1-40, 1=41-60, fronts=61-108": [([2, 3], 20), ([1], 20), ([4, 5, 6], 16)],
-    "core-heavy: 1=1-20, 2/3=21-60, fronts=61-108": [([1], 20), ([2, 3], 20), ([4, 5, 6], 16)],
-    "snake 1/2/3=1-60, fronts=61-108": [([1, 2, 3], 20), ([4, 5, 6], 16)],
-    "fortress: fronts=1-48, 2/3=49-88, 1=89-108": [([4, 5, 6], 16), ([2, 3], 20), ([1], 20)],
+    "front-wardens (build.py default)": build.LAYOUTS["front-wardens"],
+    "graded: 2/3=1-20, fronts mid, 2/3 fill, 1=weakest": build.LAYOUTS["graded"],
+    "balanced: whale W everywhere, then graded": build.LAYOUTS["balanced"],
+    "vault: 2/3=1-40, fronts mid, 1=weakest": [([2, 3], 20), ([4, 5, 6], None), ([1], 20)],
+    "core-heavy: 1=1-20, 2/3=21-60, fronts=rest": [([1], 20), ([2, 3], 20), ([4, 5, 6], None)],
+    "snake 1/2/3=1-60, fronts=rest": [([1, 2, 3], 20), ([4, 5, 6], None)],
+    "fortress: fronts=strongest, 2/3 next, 1=weakest": [([4, 5, 6], 16), ([2, 3], 20), ([1], None)],
 }
 
 
