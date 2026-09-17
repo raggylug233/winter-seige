@@ -124,10 +124,11 @@ def assign(rows, use_pins=True):
         for r in rows:
             r["target"] = plan[(r["player"], r["squad"])]
             by_sh[r["target"]].append(r)
-        for lst in by_sh.values():
+        for sh, lst in by_sh.items():
             lst.sort(key=lambda r: -r["power"])
             for i, r in enumerate(lst):
                 r["warden"] = i == 0
+                r["out"] = i >= STRONGHOLDS[sh]["cap"]   # beyond the top 20: attacks only
         return by_sh
     plan = {}
     remaining = list(rows)
@@ -164,6 +165,8 @@ def fmt(n):
 
 
 def stars_for(r, sh):
+    if r.get("out"):
+        return 0
     s = STRONGHOLDS[sh]["stars"]
     return s * 2 if r["warden"] else s
 
@@ -174,8 +177,10 @@ def card(sh, squads):
     power = sum(r["power"] for r in squads)
     rows_html = []
     for r in squads:
-        cls = "warden" if r["warden"] else ""
+        cls = "warden" if r["warden"] else ("out" if r.get("out") else "")
         move = "" if r["current"] == sh else f'<span class="move">from {r["current"]}</span>'
+        if r.get("out"):
+            move = '<span class="move">not in top 20 — attacks only</span>'
         rows_html.append(
             f'<tr class="{cls}"><td class="rk">{r["rank"]}</td>'
             f'<td class="nm">{html.escape(r["player"])} <span class="sq">S{r["squad"]}</span>'
@@ -187,7 +192,7 @@ def card(sh, squads):
 <section class="sh tier-{info['tier'].lower()}" id="sh{sh}">
   <header>
     <h2>Stronghold {sh} <small>{info['tier']}</small></h2>
-    <div class="meta">{len(squads)}/{info['cap']} squads · {total} ★ · {fmt(power)} · {info['stars']}★ per squad, Warden {info['stars']*2}★</div>
+    <div class="meta">{min(len(squads), info['cap'])}/{info['cap']} squads{f" (+{len(squads)-info['cap']} over)" if len(squads) > info['cap'] else ""} · {total} ★ · {fmt(power)} · {info['stars']}★ per squad, Warden {info['stars']*2}★</div>
   </header>
   <table>{''.join(rows_html)}</table>
 </section>"""
@@ -260,6 +265,7 @@ td.rk {{ color:var(--mute); width:2.2em; text-align:right }} td.nm {{ width:100%
 .sq {{ color:var(--mute); font-size:12px }} td.pw {{ text-align:right; font-variant-numeric:tabular-nums }}
 td.st {{ color:#d4a017; letter-spacing:-1px }} td.mv {{ font-size:11px }}
 tr.warden {{ background:var(--warden); font-weight:600 }}
+tr.out {{ opacity:.55 }} tr.out td.mv {{ white-space:normal }}
 .badge {{ font-size:10px; text-transform:uppercase; background:#d4a017; color:#1b1b1b; border-radius:4px; padding:1px 5px; margin-left:4px; vertical-align:middle }}
 .move {{ color:var(--move) }}
 .arrows {{ text-align:center; color:var(--mute); font-size:12px; grid-column:1/-1 }}
