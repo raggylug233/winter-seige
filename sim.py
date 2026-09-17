@@ -114,7 +114,7 @@ def layout(rows, pools):
     """Balanced layout: pools as in build.POOLS, consumed strongest-first."""
     saved, build.POOLS = build.POOLS, pools
     try:
-        return build.assign(rows)
+        return build.assign(rows, use_pins=False)
     finally:
         build.POOLS = saved
 

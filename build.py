@@ -15,8 +15,13 @@ docs/strategy.md; 112 squads):
   * ranks 93-112 -> Stronghold 1 (reached last; 3 stars each, kept safe)
   * Warden       -> strongest squad in each stronghold
 
+Once the plan is applied in-game, the CSV's `assigned` column pins each squad
+where it is; squads without one (late sign-ups) are placed into free slots,
+fronts first, without moving anyone else.
+
 `python3 build.py <layout>` builds another layout from LAYOUTS into
-<layout>.html. Edit OVERRIDES to pin a squad somewhere; sim.py compares layouts.
+<layout>.html (ignoring pins). Edit OVERRIDES to pin a squad somewhere;
+sim.py compares layouts.
 """
 import csv
 import html
@@ -79,8 +84,30 @@ def load():
         r["power"] = int(r["power"])
         r["rank"] = int(r["rank"])
         r["current"] = int(r.get("current") or 1)
+        r["assigned"] = int(r["assigned"]) if r.get("assigned") else None
     rows.sort(key=lambda r: -r["power"])
     return rows
+
+
+LATE_ORDER = [4, 5, 6, 2, 3, 1]   # where late sign-ups go, by free slots
+
+
+def assign_pinned(rows):
+    """Keep every pinned squad where it is; put the rest into free slots."""
+    plan = {(r["player"], r["squad"]): r["assigned"] for r in rows if r["assigned"]}
+    count = defaultdict(int)
+    for sh in plan.values():
+        count[sh] += 1
+    for r in rows:  # strongest first
+        if r["assigned"]:
+            continue
+        free = [sh for sh in LATE_ORDER if count[sh] < STRONGHOLDS[sh]["cap"]]
+        assert free, "no free slots"
+        fronts = [sh for sh in free if sh in (4, 5, 6)]
+        sh = min(fronts, key=lambda s: count[s]) if fronts else free[0]
+        count[sh] += 1
+        plan[(r["player"], r["squad"])] = sh
+    return plan
 
 
 def snake(order):
@@ -90,7 +117,18 @@ def snake(order):
         yield from seq
 
 
-def assign(rows):
+def assign(rows, use_pins=True):
+    if use_pins and any(r.get("assigned") for r in rows):
+        plan = assign_pinned(rows)
+        by_sh = defaultdict(list)
+        for r in rows:
+            r["target"] = plan[(r["player"], r["squad"])]
+            by_sh[r["target"]].append(r)
+        for lst in by_sh.values():
+            lst.sort(key=lambda r: -r["power"])
+            for i, r in enumerate(lst):
+                r["warden"] = i == 0
+        return by_sh
     plan = {}
     remaining = list(rows)
     fixed = sum(cap * len(order) for order, cap in POOLS if cap is not None)
@@ -178,7 +216,7 @@ def main():
         if sys.argv[1] != LAYOUT:
             OUT = ROOT / f"{sys.argv[1]}.html"
     rows = load()
-    by_sh = assign(rows)
+    by_sh = assign(rows, use_pins=len(sys.argv) == 1)
     total_stars = sum(stars_for(r, sh) for sh, lst in by_sh.items() for r in lst)
     moves = sum(r["current"] != r["target"] for r in rows)
     cards = {sh: card(sh, by_sh[sh]) for sh in STRONGHOLDS}

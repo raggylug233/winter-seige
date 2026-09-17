@@ -20,11 +20,11 @@ The guides describe 4 strongholds with 30 squads each. Our battlefield is differ
 | Garrison cap | **Top 20 squads** per stronghold | Warden + top 29 (30 total) |
 | Stars per normal squad | Empowered **3**, Advanced **2**, Primitive **1** (from the stronghold headers) | Empowered 3, Primitive 1; Warden ×2 |
 | Hearts shown | 4 on every squad (no Wardens appointed yet) | 4 normal, 5 Warden (after the Sept 2026 change) |
-| Squads signed up | 112 (56 players × 2) as of 2026-09-17; Mai ♡ and CANSæRBæRæ were added from Gemini's list, not from our screenshots | — |
+| Squads signed up | 120 (60 players × 2) as of 2026-09-17; Mai ♡ and CANSæRBæRæ were added from Gemini's list, not from our screenshots; LE RAT CANAM, Luckynanas, Arwres and Gemini signed up after the plan was applied | — |
 
 Map paths (from the "Switch Garrison Stronghold" screen): 4→2, 5→2, 5→3, 6→3, then 2→1 and 3→1. Stronghold 1 is the core, 2 and 3 are the middle ring, and 4, 5 and 6 are the front.
 
-Total slots: 6 × 20 = 120, and we have 112 squads, so every squad can garrison somewhere.
+Total slots: 6 × 20 = 120, and we have 120 squads, so the board is exactly full.
 
 Maximum Stars if every slot is filled (normal squads only): Empowered 20 × 3 = 60, Advanced 2 × 20 × 2 = 80, Primitive 3 × 20 × 1 = 60, for 200 in total. Wardens are presumably worth double (6, 4 and 2 Stars). That's confirmed for Empowered and Primitive, and inferred for Advanced.
 
