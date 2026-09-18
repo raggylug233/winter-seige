@@ -240,6 +240,13 @@ def main():
         players=player_table(rows),
     )
     OUT.write_text(page, encoding="utf-8")
+    if len(sys.argv) == 1:   # our garrison in the same format as the scouted enemy files
+        with open(ROOT / "data" / "garrison.csv", "w", newline="", encoding="utf-8") as f:
+            w = csv.writer(f); w.writerow(["stronghold", "rank", "player", "squad", "power", "warden"])
+            for sh in sorted(by_sh):
+                for i, r in enumerate(by_sh[sh], 1):
+                    if not r.get("out"):
+                        w.writerow([sh, i, r["player"], r["squad"], r["power"], int(r["warden"])])
     print(f"wrote {OUT}: {len(rows)} squads, {total_stars} stars, {moves} moves")
 
 
