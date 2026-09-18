@@ -2,7 +2,7 @@
 
 This document summarises a squad-deployment plan for the Whiteout Survival **Winter Siege** event so that another model (or person) can check the reasoning, challenge it, or propose a better plan on the same facts. Everything below comes from in-game screenshots taken 2026-09-16/17, the in-game Rules Overview, and a simulation whose assumptions are stated. Where something is an assumption rather than a rule, it says so.
 
-Repository with the data, generator and simulator: https://github.com/stevenbower/hieroglyphics (live page: https://stevenbower.github.io/hieroglyphics/).
+Repository with the data, generator and simulator: https://github.com/raggylug233/winter-seige (live page: https://raggylug233.github.io/winter-seige/).
 
 ## 1. The battlefield (from our screenshots — differs from every public guide)
 

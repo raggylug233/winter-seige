@@ -1,6 +1,6 @@
 # Winter Siege: our plan and why
 
-Full plan with every squad: https://stevenbower.github.io/hieroglyphics/
+Full plan with every squad: https://raggylug233.github.io/winter-seige/
 
 ## How the event actually works
 
