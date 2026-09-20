@@ -26,7 +26,7 @@ import sim
 
 ROOT = Path(__file__).parent
 SAFE = 1.07          # ratio for a safe outright win
-POSSIBLE = 0.95      # ratio at which a well-built squad has beaten a floored whale (SIN vs KnackeredNoggin, 2026-09-19)
+POSSIBLE = 0.94      # ratio at which a well-built squad has beaten a floored whale (SIN vs KnackeredNoggin, 2026-09-19)
 FLOOR = 0.6
 STARS = {1: 3, 2: 2, 3: 2, 4: 1, 5: 1, 6: 1}
 NEXT = {4: [2], 5: [2, 3], 6: [3], 2: [1], 3: [1], 1: []}

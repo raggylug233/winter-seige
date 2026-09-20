@@ -11,13 +11,13 @@ Generated 2026-09-20 from scouted garrisons (`friendly-SIN.csv`, `enemy-LIT.csv`
 | Strongest squad | 1.24B | 2.18B |
 | Stars on board | 210 | 210 |
 | Layout | front-heavy (strength at the fronts): core 12.14B, middle 21.17B, fronts 31.69B | front-heavy (strength at the fronts): core 14.25B, middle 20.99B, fronts 27.40B |
-| Squads the other side cannot kill (60% floor) | 0: none | 1: KnackeredNoggin S1 2.18B (SH1) |
+| Squads the other side cannot kill (60% floor) | 0: none | 0: none |
 
 ### Per stronghold
 
 | Stronghold | SIN power · ★ · Warden | [LIT] power · ★ · Warden | attacks for us to clear | attacks for them to clear |
 |---|---|---|---|---|
-| 1 (Empowered) | 12.14B · 63★ · (blank) S1 1.24B | 14.25B · 63★ · KnackeredNoggin S1 2.18B | never (unkillable squad) | ~86 |
+| 1 (Empowered) | 12.14B · 63★ · (blank) S1 1.24B | 14.25B · 63★ · KnackeredNoggin S1 2.18B | ~124 | ~86 |
 | 2 (Advanced) | 9.79B · 42★ · ⊶GuGu⊷ S1 1.01B | 10.25B · 42★ · Ary S2 963M | ~86 | ~81 |
 | 3 (Advanced) | 11.38B · 42★ · FedeC S1 959M | 10.74B · 42★ · KnackeredNoggin S2 1.91B | ~116 | ~81 |
 | 4 (Primitive) | 10.85B · 21★ · Kloss S1 924M | 9.00B · 21★ · Hornet S1 712M | ~81 | ~81 |
@@ -33,7 +33,7 @@ Same model as our own plan (`sim.py`): path unlocking, win chance rising with po
 | Stars [LIT] loses when SIN attacks (of 210) | 84 / 110 | 107 / 137 | 152 / 159 | 194 / 198 | 200 / 200 |
 | Stars SIN loses when [LIT] attacks (of 210) | 98 / 97 | 131 / 134 | 161 / 154 | 163 / 167 | 207 / 208 |
 
-**Verdict: Too close to call at equal activity — whoever uses more of their attacks wins.** Ceiling for SIN: 204★ of 210 (the rest sits on unkillable squads).
+**Verdict: Too close to call at equal activity — whoever uses more of their attacks wins.** Ceiling for SIN: 210★ of 210 (the rest sits on unkillable squads).
 
 ## Attack plan for SIN
 
@@ -176,7 +176,7 @@ Opens both 2 and 3; not the very cheapest front, but worth it for the double unl
 
 ### Phase 6 — if Stronghold 2 is fully cleared (~86 attacks): farm Stronghold 1
 
-18 squads worth 3★ that we beat outright or nearly: ~72 attacks for 54★. Their Stronghold 1 Warden is unkillable, so it can never be zeroed.
+18 squads worth 3★ that we beat outright or nearly: ~72 attacks for 54★. Their Stronghold 1 can be zeroed.
 
 | Target | SH | Power | ★ | Beat outright by | Est. attacks |
 |---|---|---|---|---|---|
