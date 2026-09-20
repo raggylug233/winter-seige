@@ -25,7 +25,8 @@ import build
 import sim
 
 ROOT = Path(__file__).parent
-SAFE = 1.07
+SAFE = 1.07          # ratio for a safe outright win
+POSSIBLE = 0.95      # ratio at which a well-built squad has beaten a floored whale (SIN vs KnackeredNoggin, 2026-09-19)
 FLOOR = 0.6
 STARS = {1: 3, 2: 2, 3: 2, 4: 1, 5: 1, 6: 1}
 NEXT = {4: [2], 5: [2, 3], 6: [3], 2: [1], 3: [1], 1: []}
@@ -55,13 +56,16 @@ def morale_drop(m):
 
 def classify(r, attackers):
     """(class, #attackers that beat it outright, expected attacks to remove it)."""
-    if attackers[0] < r["power"] * FLOOR * SAFE:
+    if attackers[0] < r["power"] * FLOOR * POSSIBLE:
         return "unkillable", 0, None
     outright = sum(p >= r["power"] * SAFE for p in attackers)
     cls = "easy" if outright >= 12 else "mid" if outright >= 3 else "hard"
     m, baits = 1.0, 0
     while sum(p >= r["power"] * m * SAFE for p in attackers) < 3 and m > FLOOR:
         m = morale_drop(m); baits += 1
+    if sum(p >= r["power"] * m * SAFE for p in attackers) < 3:
+        # only our very best can take it, at the floor, with the right build
+        return "hard", outright, r["hearts"] * (baits + 2)
     return cls, outright, r["hearts"] * (baits + 1)
 
 

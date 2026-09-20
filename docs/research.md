@@ -78,3 +78,6 @@ What this means for us:
   - Heavy spenders: 50/20/30 or 40/20/40.
   - Since the same squad attacks and defends, prefer hybrid setups.
 - **During the battle:** coordinate targets first, use battle reports to read enemy stats (scouting shows none), and attack enemies of similar power.
+
+## Battle evidence (2026-09-19): a floored whale is beatable below parity
+SIN's 1.24B Warden beat [LIT] KnackeredNoggin (2.18B, Stronghold 1 Warden) after he was baited to 60% morale — effective 1.31B, an attacker/defender ratio of ~0.95. Result: defender 0 survivors, attacker 34% survivors. Attacker ran 60% infantry / 40% lancer / no marksmen; the defender's 128k infantry scored only 5k kills against the attacker's buffed infantry while the attacker's lancers scored 54k of 75k. The defender had better chief gear (T5/T6 vs T1), hero gear and experts; the 0.6 multiplier reversed all of it. Screens in `screenshots/reports/`. Consequence: the plan's "unkillable" threshold is now 0.95 × power × 0.6 instead of 1.07, and the six-bait finish is a real option against [AoA]'s two biggest Wardens.

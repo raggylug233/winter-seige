@@ -1,6 +1,6 @@
 # SIN vs [LIT] — matchup analysis and attack plan
 
-Generated 2026-09-18 from scouted garrisons (`friendly-SIN.csv`, `enemy-LIT.csv`).
+Generated 2026-09-20 from scouted garrisons (`friendly-SIN.csv`, `enemy-LIT.csv`).
 
 ## Who is stronger
 
@@ -19,7 +19,7 @@ Generated 2026-09-18 from scouted garrisons (`friendly-SIN.csv`, `enemy-LIT.csv`
 |---|---|---|---|---|
 | 1 (Empowered) | 12.14B · 63★ · (blank) S1 1.24B | 14.25B · 63★ · KnackeredNoggin S1 2.18B | never (unkillable squad) | ~86 |
 | 2 (Advanced) | 9.79B · 42★ · ⊶GuGu⊷ S1 1.01B | 10.25B · 42★ · Ary S2 963M | ~86 | ~81 |
-| 3 (Advanced) | 11.38B · 42★ · FedeC S1 959M | 10.74B · 42★ · KnackeredNoggin S2 1.91B | ~111 | ~81 |
+| 3 (Advanced) | 11.38B · 42★ · FedeC S1 959M | 10.74B · 42★ · KnackeredNoggin S2 1.91B | ~116 | ~81 |
 | 4 (Primitive) | 10.85B · 21★ · Kloss S1 924M | 9.00B · 21★ · Hornet S1 712M | ~81 | ~81 |
 | 5 (Primitive) | 11.89B · 21★ · Hassikkome S1 963M | 9.20B · 21★ · Ndi Ari S1 780M | ~81 | ~81 |
 | 6 (Primitive) | 8.95B · 21★ · Rebel S1 810M | 9.20B · 21★ · Ary S1 1.22B | ~101 | ~81 |
@@ -167,12 +167,12 @@ Opens both 2 and 3; not the very cheapest front, but worth it for the double unl
 
 ### Phase 5 — only with leftover attempts: the hard 2★ targets
 
-2 squads that need several baits per Heart before a top squad can finish: ~45 attacks for 8★. Poor value.
+2 squads that need several baits per Heart before a top squad can finish: ~50 attacks for 8★. Poor value.
 
 | Target | SH | Power | ★ | Beat outright by | Est. attacks |
 |---|---|---|---|---|---|
 | Ary S2 (W) | 2 | 963M | 4 | ≥ 1.03B (1 of ours) | 10 |
-| KnackeredNoggin S2 (W) | 3 | 1.91B | 4 | ≥ 2.04B (0 of ours) | 35 |
+| KnackeredNoggin S2 (W) | 3 | 1.91B | 4 | ≥ 2.04B (0 of ours) | 40 |
 
 ### Phase 6 — if Stronghold 2 is fully cleared (~86 attacks): farm Stronghold 1
 

@@ -1,6 +1,6 @@
 # VKR vs [Asy] — matchup analysis and attack plan
 
-Generated 2026-09-18 from scouted garrisons (`friendly-VKR.csv`, `enemy-ASY.csv`).
+Generated 2026-09-20 from scouted garrisons (`friendly-VKR.csv`, `enemy-ASY.csv`).
 
 ## Who is stronger
 

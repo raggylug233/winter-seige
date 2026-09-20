@@ -1,6 +1,6 @@
 # Us vs [AoA] — matchup analysis and attack plan
 
-Generated 2026-09-18 from scouted garrisons (`garrison.csv`, `enemy.csv`).
+Generated 2026-09-20 from scouted garrisons (`garrison.csv`, `enemy.csv`).
 
 ## Who is stronger
 
@@ -11,15 +11,15 @@ Generated 2026-09-18 from scouted garrisons (`garrison.csv`, `enemy.csv`).
 | Strongest squad | 1.41B | 2.44B |
 | Stars on board | 210 | 210 |
 | Layout | front-heavy (strength at the fronts): core 7.01B, middle 25.58B, fronts 32.56B | middle-heavy (strength in Strongholds 2 and 3): core 19.92B, middle 29.55B, fronts 23.79B |
-| Squads the other side cannot kill (60% floor) | 0: none | 2: NoSoup4u S1 2.44B (SH1), Camille Khan S2 2.41B (SH2) |
+| Squads the other side cannot kill (60% floor) | 0: none | 0: none |
 
 ### Per stronghold
 
 | Stronghold | Us power · ★ · Warden | [AoA] power · ★ · Warden | attacks for us to clear | attacks for them to clear |
 |---|---|---|---|---|
-| 1 (Empowered) | 7.01B · 63★ · Team FishBiscuit S1 576M | 19.92B · 63★ · NoSoup4u S1 2.44B | never (unkillable squad) | ~81 |
-| 2 (Advanced) | 12.97B · 42★ · Leoder S1 1.41B | 14.75B · 42★ · Camille Khan S2 2.41B | never (unkillable squad) | ~81 |
-| 3 (Advanced) | 12.62B · 42★ · Ms Get Down S1 1.18B | 14.80B · 42★ · NoSoup4u S2 2.03B | ~143 | ~81 |
+| 1 (Empowered) | 7.01B · 63★ · Team FishBiscuit S1 576M | 19.92B · 63★ · NoSoup4u S1 2.44B | ~192 | ~81 |
+| 2 (Advanced) | 12.97B · 42★ · Leoder S1 1.41B | 14.75B · 42★ · Camille Khan S2 2.41B | ~152 | ~81 |
+| 3 (Advanced) | 12.62B · 42★ · Ms Get Down S1 1.18B | 14.80B · 42★ · NoSoup4u S2 2.03B | ~148 | ~81 |
 | 4 (Primitive) | 10.74B · 21★ · Chytras S1 1.16B | 7.45B · 21★ · Macsen S2 828M | ~81 | ~81 |
 | 5 (Primitive) | 10.96B · 21★ · Raggylug S1 1.15B | 8.75B · 21★ · jinx S1 770M | ~81 | ~81 |
 | 6 (Primitive) | 10.86B · 21★ · Leoder S2 1.14B | 7.59B · 21★ · Mistyy S1 816M | ~81 | ~81 |
@@ -33,7 +33,7 @@ Same model as our own plan (`sim.py`): path unlocking, win chance rising with po
 | Stars [AoA] loses when Us attacks (of 210) | 85 / 94 | 118 / 123 | 133 / 133 | 138 / 139 | 139 / 139 |
 | Stars Us loses when [AoA] attacks (of 210) | 111 / 111 | 140 / 139 | 169 / 169 | 195 / 196 | 210 / 210 |
 
-**Verdict: AoA is favoured: at equal activity they keep more Stars. Us wins only by out-attacking them.** Ceiling for Us: 200★ of 210 (the rest sits on unkillable squads).
+**Verdict: AoA is favoured: at equal activity they keep more Stars. Us wins only by out-attacking them.** Ceiling for Us: 210★ of 210 (the rest sits on unkillable squads).
 
 ## Attack plan for Us
 
@@ -162,20 +162,21 @@ Opens both 2 and 3; not the very cheapest front, but worth it for the double unl
 
 ### Phase 5 — only with leftover attempts: the hard 2★ targets
 
-6 squads that need several baits per Heart before a top squad can finish: ~123 attacks for 14★. Poor value.
+7 squads that need several baits per Heart before a top squad can finish: ~168 attacks for 18★. Poor value.
 
 | Target | SH | Power | ★ | Beat outright by | Est. attacks |
 |---|---|---|---|---|---|
+| Camille Khan S2 (W) | 2 | 2.41B | 4 | ≥ 2.58B (0 of ours) | 40 |
 | Megs S1 | 2 | 1.71B | 2 | ≥ 1.83B (0 of ours) | 28 |
 | Weebins S1 | 2 | 1.32B | 2 | ≥ 1.41B (0 of ours) | 12 |
 | ShadowX S2 | 2 | 1.15B | 2 | ≥ 1.23B (1 of ours) | 8 |
-| NoSoup4u S2 (W) | 3 | 2.03B | 4 | ≥ 2.18B (0 of ours) | 35 |
+| NoSoup4u S2 (W) | 3 | 2.03B | 4 | ≥ 2.18B (0 of ours) | 40 |
 | Peanut Hamper S1 | 3 | 1.78B | 2 | ≥ 1.91B (0 of ours) | 28 |
 | Junior S1 | 3 | 1.29B | 2 | ≥ 1.38B (1 of ours) | 12 |
 
-### Phase 6 — if Stronghold 3 is fully cleared (~143 attacks): farm Stronghold 1
+### Phase 6 — if Stronghold 3 is fully cleared (~148 attacks): farm Stronghold 1
 
-14 squads worth 3★ that we beat outright or nearly: ~56 attacks for 42★. Their Stronghold 1 Warden is unkillable, so it can never be zeroed.
+14 squads worth 3★ that we beat outright or nearly: ~56 attacks for 42★. Their Stronghold 1 can be zeroed.
 
 | Target | SH | Power | ★ | Beat outright by | Est. attacks |
 |---|---|---|---|---|---|
