@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 """Compare Winter Siege garrison layouts against a simulated enemy.
 
-Rules modelled (in-game Rules Overview, 2026-09-16):
+Rules modelled (in-game Rules Overview, 2026-10-14):
   * unlocking: every squad in a stronghold must be defeated before the strongholds
     it connects to can be attacked. Paths: 4->2, 5->2,3, 6->3, 2->1, 3->1.
   * an attack wins with probability sigmoid(K * ln(attacker / (defender * morale)))
-  * defender morale: -10% per defender win above 80%, -5% at/below, floor 60%;
+  * defender morale: -5% per defender win above 90%, -2% at/below, floor 60%;
     resets to 100% when the defender loses a Heart (normal 4, Warden 5)
   * the enemy either commits to the cheapest-to-clear reachable stronghold
     ('path', a coordinated alliance) or always hits the best stars-per-expected-
@@ -35,7 +35,7 @@ def win_prob(attacker, defender_eff):
 
 
 def morale_drop(m):
-    return max(MORALE_FLOOR, round(m - (.10 if m > .80 else .05), 2))
+    return max(MORALE_FLOOR, round(m - (.05 if m > .90 else .02), 2))
 
 
 def exp_cost(d, att):
@@ -126,7 +126,7 @@ LAYOUTS = {
     "vault: 2/3=1-40, fronts mid, 1=weakest": [([2, 3], 20), ([4, 5, 6], None), ([1], 20)],
     "core-heavy: 1=1-20, 2/3=21-60, fronts=rest": [([1], 20), ([2, 3], 20), ([4, 5, 6], None)],
     "snake 1/2/3=1-60, fronts=rest": [([1, 2, 3], 20), ([4, 5, 6], None)],
-    "fortress: fronts=strongest, 2/3 next, 1=weakest": [([4, 5, 6], 16), ([2, 3], 20), ([1], None)],
+    "fortress: fronts=strongest, 2/3 next, 1=weakest": [([4, 5, 6], 20), ([2, 3], 20), ([1], 20)],
 }
 
 
@@ -135,7 +135,7 @@ def main():
     our = [r["power"] for r in rows]
     budgets = (3, 4, 5, 6)
     factors = [float(x) for x in sys.argv[1:]] or [1.0, 1.15, 1.3]
-    print("stars lost of 198, coordinated/greedy attacker, by attacks landed per enemy squad")
+    print("stars lost, coordinated/greedy attacker, by attacks landed per enemy squad")
     print(f"{'layout':52s}" + "".join(f"  x{f:<4}" + " " * 9 for f in factors))
     for name, pools in LAYOUTS.items():
         by_sh = layout(copy.deepcopy(rows), pools)

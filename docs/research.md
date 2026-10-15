@@ -37,10 +37,19 @@ Maximum Stars if every slot is filled (normal squads only): Empowered 20 × 3 = 
 - **Gating (in-game rules screen, `screenshots/rules1.png`):** "all defender squads garrisoning the current stronghold must be defeated in order for your forces to attack the next connected strongholds." Connections from the map: 4→2, 5→2 and 3, 6→3, 2→1, 3→1. So the enemy clears one front, then the Advanced stronghold behind it, then Stronghold 1.
 - **Morale (defenders only, in-game rules screen, `screenshots/rules2.png`):**
   - A defender's stats are its stats at lock time × its morale.
-  - Each defender victory costs −10% morale while morale is above 80%, and −5% at or below 80%. **Morale stops falling at 60%** (the creator videos said 35%; the in-game text says 60%).
+  - Each defender victory costs −5% morale while morale is above 90%, and −2% at or below 90% (changed for the 2026-10-15 event; it was −10% above 80% and −5% below). **Morale stops falling at 60%** (the creator videos said 35%; the in-game text says 60%).
+  - So reaching the floor takes 17 lost attacks per Heart (it used to take 6), and two baits only reach 90%.
   - Losing a Heart resets morale to 100%. Attacker morale is always 100%.
 - **Bonuses that don't apply:** hero gear exclusive skills, territory buffs, state or President buffs, Frost Dragon, and city bonuses.
 - **Attack attempts (in-game rules screen):** each squad starts with 3 and gets 1 restored every 2 hours, at most 7 restored, so 10 per squad and 20 per player. Injured troops recover after every battle. Squads set up by a Chief who leaves during the Battle Phase are retained.
+
+## Rules Overview as of 2026-10-14 (event of 15–17 October)
+Read from the in-game Rules Overview (Rules and Event Schedule tabs). Preparation 10/14–10/15, Scout 10/16, Battle 10/17 (UTC). Compared with September:
+
+- **Morale drains much more slowly:** −5% per defender win above 90%, −2% at or below 90%, floor 60%. A Heart lost still resets it to 100%. Getting a defender to 60% now costs 17 lost attacks per Heart instead of 6, so baiting a whale down to the floor is no longer practical with 10 attempts per squad. Two baits (to 90%) or five (to 84%) is the realistic range.
+- **Warden:** the Leader or an R4 appoints 1 of the **5 most powerful** squads garrisoning a stronghold; the Warden's squad takes priority for a garrison slot, then the rest by power. At the start of Scouting, a stronghold with no Warden gets its most powerful squad appointed automatically, and an empty stronghold gets one system-generated squad.
+- **Officers:** R4 and above can move any member's squads between strongholds.
+- **Unchanged:** 2 squads per Chief, 3 heroes per squad and no hero shared between them, troop mix chosen by the Chief and filling the deployment cap (redistributed in the same ratio if the cap changes), everything locked when Preparation ends; 3 attempts at start, +1 per 2 h up to 7 restored (10 per squad); win conditions as below; same bonus exclusions; pet skills on by default (active effects don't stack).
 
 ## Rule change (announced about 2026-09-10)
 Sources: Tonton Gaming, "Is Winter Siege now a FAIR battle? They FIXED it!" (https://www.youtube.com/watch?v=NfQpHMjFco0, 2026-09-10) and "Winter Siege Recap" (https://www.youtube.com/watch?v=GF9OpXP-iGo, 2026-09-14); WOS Strategy Lab (https://www.youtube.com/watch?v=uDJjrh021wk, 2026-09-13).

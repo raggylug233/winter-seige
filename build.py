@@ -321,7 +321,7 @@ tr.out {{ opacity:.55 }} tr.out td.mv {{ white-space:normal }}
     <li>Win = first to zero the enemy; else most Stars left; tie → surviving troop power.</li>
     <li>Attacks accrue over the day (3 per squad at start, +1 every 2h). Against an equal enemy the race is tight: both sides can wipe the other in ~24h if attacks aren't wasted, so speed and not wasting attacks matter.</li>
     <li>Front tier first, cheapest kills first. Agree the order before anyone attacks.</li>
-    <li>Bottom-tier squads bait morale on their strong defenders (−10% per defender win above 80%, then −5%, floor 60%); mid squads take the weakened target; whales finish. A lost Heart resets morale to 100%, so repeat per Heart.</li>
+    <li>Baiting is weak now: each defender win costs only −5% morale above 90%, then −2% (floor 60%), and a lost Heart resets it to 100%. Two cheap baits take a target to 90%; beyond that, pick targets you beat outright.</li>
     <li>Everyone attacks, including squads outside the top 20 and squads already eliminated.</li>
   </ul></div>
 </div>

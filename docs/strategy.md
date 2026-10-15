@@ -6,7 +6,7 @@ Written 2026-09-16, revised 2026-09-17, for the 6-stronghold, 20-slot battlefiel
 
 - **Unlocking:** every squad in a stronghold must be defeated before the strongholds it connects to can be attacked. Map paths: 4 → 2, 5 → 2 and 3, 6 → 3, then 2 and 3 → 1. So the enemy breaks *one* front, then the Advanced stronghold behind it, then Stronghold 1.
 - **Stars:** Primitive 1 per squad, Advanced 2, Empowered 3; Wardens double. A squad's Stars are lost only when all its Hearts are gone (normal 4, Warden 5).
-- **Morale:** defender stats = lock-time stats × morale. Each defender *win* costs 10% above 80%, then 5%, floor 60%. Losing a Heart resets it to 100%. Attackers are always at 100%.
+- **Morale:** defender stats = lock-time stats × morale. Each defender *win* costs 5% above 90%, then 2%, floor 60% (from the October event; it was 10%/5%). The floor now takes 17 lost attacks per Heart. Losing a Heart resets it to 100%. Attackers are always at 100%.
 - **Attacks:** 10 per squad over the day (3 at start, +1 every 2 h, max 7 restored). ~1,120 per side for 56 players, against ~500 Hearts on a full board.
 - **Result:** first to zero the enemy wins; otherwise most Stars left; then surviving troop power; then whoever dropped to that number later. Equal Stars before and after means both lose.
 

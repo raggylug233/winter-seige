@@ -11,7 +11,7 @@ directions, and a phased attack plan with roles for the friendly side.
 
 Kill model (see sim.py): an attack is a safe win when attacker power >= SAFE x
 the defender's effective power (power x morale). Bait = a deliberately lost
-attack that drops the defender's morale (-10% above 80%, -5% at or below,
+attack that drops the defender's morale (-5% above 90%, -2% at or below,
 floor 60%); losing a Heart resets it to 100%.
 """
 import csv
@@ -51,7 +51,7 @@ def load(path):
 
 
 def morale_drop(m):
-    return max(FLOOR, round(m - (.10 if m > .80 else .05), 2))
+    return max(FLOOR, round(m - (.05 if m > .90 else .02), 2))
 
 
 def classify(r, attackers):
