@@ -44,7 +44,9 @@ Maximum Stars if every slot is filled (normal squads only): Empowered 20 × 3 = 
 - **Attack attempts (in-game rules screen):** each squad starts with 3 and gets 1 restored every 2 hours, at most 7 restored, so 10 per squad and 20 per player. Injured troops recover after every battle. Squads set up by a Chief who leaves during the Battle Phase are retained.
 
 ## Rules Overview as of 2026-10-14 (event of 15–17 October)
-Read from the in-game Rules Overview (Rules and Event Schedule tabs). Preparation 10/14–10/15, Scout 10/16, Battle 10/17 (UTC). Compared with September:
+Read from the in-game Rules Overview (Rules and Event Schedule tabs). Preparation 10/14–10/15, Scout 10/16, Battle 10/17 (UTC). The heart and morale changes are confirmed by the developers' in-game mail of 2026-10-11 (`screenshots/rules6-mail-2026-10-11.png`), effective from this event. Compared with September:
+
+- **Hearts:** normal squads 4 → 5, Wardens 5 → 6.
 
 - **Morale drains much more slowly:** −5% per defender win above 90%, −2% at or below 90%, floor 60%. A Heart lost still resets it to 100%. Getting a defender to 60% now costs 17 lost attacks per Heart instead of 6, so baiting a whale down to the floor is no longer practical with 10 attempts per squad. Two baits (to 90%) or five (to 84%) is the realistic range.
 - **Warden:** the Leader or an R4 appoints 1 of the **5 most powerful** squads garrisoning a stronghold; the Warden's squad takes priority for a garrison slot, then the rest by power. At the start of Scouting, a stronghold with no Warden gets its most powerful squad appointed automatically, and an empty stronghold gets one system-generated squad.
