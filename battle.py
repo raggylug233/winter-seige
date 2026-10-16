@@ -160,6 +160,48 @@ def roles(friendly):
     return out
 
 
+def commentary(prefix):
+    """Hand-written notes from docs/commentary/<prefix>.md, as (markdown, html).
+
+    Supports what the notes use: ### headings, paragraphs, - and 1. lists,
+    pipe tables and **bold**."""
+    import re
+    path = ROOT / "docs" / "commentary" / f"{prefix}.md"
+    if not path.exists():
+        return "", ""
+    text = path.read_text(encoding="utf-8").strip()
+    inline = lambda t: re.sub(r"\*\*(.+?)\*\*", r"<b>\1</b>", html.escape(t))
+    out, lst, table = [], None, []
+    def flush():
+        nonlocal lst, table
+        if lst:
+            out.append(f"</{lst}>"); lst = None
+        if table:
+            rows = [[c.strip() for c in r.strip("|").split("|")] for r in table if not set(r) <= set("|-: ")]
+            out.append('<table class="cmp">' + "".join(
+                "<tr>" + "".join(f"<{'th' if i == 0 else 'td'}>{inline(c)}</{'th' if i == 0 else 'td'}>" for c in row) + "</tr>"
+                for i, row in enumerate(rows)) + "</table>")
+            table = []
+    for line in text.splitlines():
+        if line.startswith("|"):
+            if lst: flush()
+            table.append(line); continue
+        if table: flush()
+        m = re.match(r"(-|\d+\.) (.*)", line)
+        if m:
+            kind = "ul" if m.group(1) == "-" else "ol"
+            if lst != kind:
+                flush(); out.append(f"<{kind}>"); lst = kind
+            out.append(f"<li>{inline(m.group(2))}</li>"); continue
+        flush()
+        if line.startswith("### "):
+            out.append(f"<h3>{inline(line[4:])}</h3>")
+        elif line.strip():
+            out.append(f"<p>{inline(line)}</p>")
+    flush()
+    return text, '<div class="commentary">' + "\n".join(out) + "</div>"
+
+
 def main():
     fpath, epath, F, E, prefix = sys.argv[1:6]
     friendly, enemy = load(fpath), load(epath)
@@ -174,6 +216,7 @@ def main():
     we_attack = simulate(enemy, fpow)      # stars they lose
     they_attack = simulate(friendly, epow)  # stars we lose
     rl = roles(friendly)
+    notes_md, notes_html = commentary(prefix)
 
     def layout_desc(by):
         core, adv, fr = sum(r["power"] for r in by[1]), sum(r["power"] for s in (2, 3) for r in by[s]), sum(r["power"] for s in (4, 5, 6) for r in by[s])
@@ -195,6 +238,7 @@ def main():
     # ---------------- markdown ----------------
     md = [f"# {F} vs [{E}] — matchup analysis and attack plan", "",
           f"Generated {__import__('datetime').date.today()} from scouted garrisons (`{Path(fpath).name}`, `{Path(epath).name}`).", "",
+          *( [notes_md, ""] if notes_md else [] ),
           *( [f"> **Not scouted:** {F} Stronghold{'s' if len(missing(friendly))>1 else ''} {', '.join(map(str, missing(friendly)))} — no screenshots in the folder; its squads are left out of {F}'s totals and of the defence simulation.", ""] if missing(friendly) else [] ),
           *( [f"> **Not scouted:** [{E}] Stronghold{'s' if len(missing(enemy))>1 else ''} {', '.join(map(str, missing(enemy)))}.", ""] if missing(enemy) else [] ),
           "## Who is stronger", "",
@@ -266,9 +310,14 @@ def main():
 tr.easy td.mv {{ color:#2e7d32 }} tr.mid td.mv {{ color:#b26a00 }} tr.hard td.mv {{ color:#c0392b }} tr.unk {{ opacity:.5 }}
 .rules p {{ margin:0; font-size:13px }} .legend span {{ display:inline-block; margin-right:14px; font-size:12px }}
 h2.sect {{ margin:28px 0 8px; font-size:20px }} .cmp td, .cmp th {{ padding:4px 10px; text-align:left }}
+.commentary {{ background:var(--card); border:1px solid var(--line); border-radius:10px; padding:14px 18px; margin:14px 0; line-height:1.5 }}
+.commentary h3 {{ margin:14px 0 4px; font-size:16px }} .commentary h3:first-child {{ margin-top:0 }} .commentary p {{ margin:6px 0 }} .commentary ul, .commentary ol {{ margin:4px 0; padding-left:22px }}
+.commentary table {{ border-collapse:collapse; margin:6px 0; font-size:14px }} .commentary th {{ border-bottom:1px solid var(--line) }}
+@media (max-width:600px) {{ .commentary table {{ display:block; overflow-x:auto }} }}
 </style></head><body><div class="wrap">
 <h1>{html.escape(F)} vs [{html.escape(E)}]</h1>
 <div class="sub"><b>{html.escape(verdict)}</b>{(" · <span class=\"move\">not scouted: " + html.escape(F) + " Stronghold " + ", ".join(map(str, missing(friendly))) + "</span>") if missing(friendly) else ""}</div>
+{notes_html}
 <div class="rules">
  <div><h3>Who is stronger</h3><table class="cmp"><tr><th></th><th>{html.escape(F)}</th><th>[{html.escape(E)}]</th></tr>
  <tr><td>Garrison power</td><td>{fmt(sum(fpow))}</td><td>{fmt(sum(epow))}</td></tr>
