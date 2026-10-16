@@ -32,7 +32,7 @@ Maximum Stars if every slot is filled (normal squads only): Empowered 20 × 3 = 
 - **Format:** our alliance against one other alliance. Preparation runs Wednesday–Thursday, Scouting on Friday (lineups visible, no stats), Battle on Saturday. Setups lock when Preparation ends.
 - **Squads (in-game rules screen, `screenshots/rules4-how-to-play.png`):** each Chief sets up 2 and garrisons them in any friendly stronghold; the same squads attack in the Battle Phase. At the end of Preparation a set number of the most powerful squads in each stronghold form its garrison and add Stars; squads not selected can still attack. In the Scout Phase you can view the enemy garrison formations. In the Battle Phase you pick any squad in an unlocked enemy stronghold to attack.
 - **Fights:** each attack is one squad against one defending squad. No troops are lost.
-- **Hearts:** a defender loses 1 Heart per lost defense. At 0 Hearts, the stronghold loses all of that squad's Stars at once. Normal squads have **4 Hearts** and Wardens **5** (see the rule change below).
+- **Hearts:** a defender loses 1 Heart per lost defense. At 0 Hearts, the stronghold loses all of that squad's Stars at once. Normal squads have **5 Hearts** and Wardens **6** as of the October event (seen on the 2026-10-15 garrison screens; it was 4 and 5 in September).
 - **Scoring:** see the rule change below.
 - **Gating (in-game rules screen, `screenshots/rules1.png`):** "all defender squads garrisoning the current stronghold must be defeated in order for your forces to attack the next connected strongholds." Connections from the map: 4→2, 5→2 and 3, 6→3, 2→1, 3→1. So the enemy clears one front, then the Advanced stronghold behind it, then Stronghold 1.
 - **Morale (defenders only, in-game rules screen, `screenshots/rules2.png`):**
@@ -70,7 +70,7 @@ What this means for us:
 
 ## The Warden
 - R4/R5 appoint 1 Warden per stronghold during Preparation.
-- The Warden has **no aura and no garrison-wide skills**. It just carries double Stars and **one more Heart than a normal squad (5 vs 4)**.
+- The Warden has **no aura and no garrison-wide skills**. It just carries double Stars and **one more Heart than a normal squad (6 vs 5 since October; 5 vs 4 in September)**.
 - Developer tip: make the strongest squad in each stronghold its Warden. Some guides say the Warden must be among that stronghold's top 5 squads.
 - The core Warden matters most, because it holds the most Stars in one place.
 

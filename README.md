@@ -8,5 +8,6 @@ Live page: https://raggylug233.github.io/winter-seige/
 - `docs/research.md` — event rules and sources
 - `sim.py` — layout simulator
 - `battle.html` / `docs/battle.md` — our matchup vs [AoA]: scouted garrisons, analysis, attack plan (`python3 battle.py data/garrison.csv data/enemy.csv Us AoA battle`)
+- `ufo-vs-jun.html` / `docs/ufo-vs-jun.md` — 15 October: us (UFO, planned garrison) vs [JUN] (scouted)
 - `sin-vs-lit.html` / `docs/sin-vs-lit.md` and `vkr-vs-asy.html` / `docs/vkr-vs-asy.md` — the same for two other alliances' matchups
 - `tile.py` — crops/tiles screenshots for transcription

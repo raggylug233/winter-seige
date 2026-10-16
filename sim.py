@@ -6,7 +6,7 @@ Rules modelled (in-game Rules Overview, 2026-10-14):
     it connects to can be attacked. Paths: 4->2, 5->2,3, 6->3, 2->1, 3->1.
   * an attack wins with probability sigmoid(K * ln(attacker / (defender * morale)))
   * defender morale: -5% per defender win above 90%, -2% at/below, floor 60%;
-    resets to 100% when the defender loses a Heart (normal 4, Warden 5)
+    resets to 100% when the defender loses a Heart (normal 5, Warden 6; October 2026)
   * the enemy either commits to the cheapest-to-clear reachable stronghold
     ('path', a coordinated alliance) or always hits the best stars-per-expected-
     attack target it can reach ('greedy'); both are reported. It hits with the
@@ -60,7 +60,7 @@ def run(by_sh, enemy, attacks, policy="path", runs=RUNS, rng=random):
         att = defaultdict(int)
         for p in enemy:
             att[p] += attacks
-        live = {sh: [[r, sh, 5 if r["warden"] else 4, 1.0] for r in by_sh[sh]] for sh in by_sh}
+        live = {sh: [[r, sh, 6 if r["warden"] else 5, 1.0] for r in by_sh[sh]] for sh in by_sh}
         cleared = set(); lost = 0; focus = None
 
         def unlocked():

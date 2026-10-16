@@ -306,7 +306,7 @@ tr.out {{ opacity:.55 }} tr.out td.mv {{ white-space:normal }}
 <div class="rules">
   <div><h3>Why this layout</h3><ul>
     <li>Stars are lost only when a squad loses all its Hearts. A weak squad dies in 4–5 attacks; a 1B+ squad forces morale-baiting first (floor 60%) and costs 15–30. The enemy will take the cheapest path: a front → the Advanced stronghold behind it → Stronghold 1.</li>
-    <li>Each front's Warden is a whale (5 Hearts, 2★). A front can't be cleared — and the Advanced ring can't be opened — without killing one, so an enemy that can't bait a whale down never gets past the fronts. Mid-strength squads (ranks 24–72) fill the fronts so all three cost about the same.</li>
+    <li>Each front's Warden is a whale (6 Hearts, 2★). A front can't be cleared — and the Advanced ring can't be opened — without killing one, so an enemy that can't bait a whale down never gets past the fronts. Mid-strength squads (ranks 24–72) fill the fronts so all three cost about the same.</li>
     <li>The two biggest squads and the next 18 form the wall in Strongholds 2 and 3: once a front does fall, the reachable targets are worth 2★ and expensive.</li>
     <li>Stronghold 1 is reached last, so it holds the weakest squads: 60★ that are only in danger after a front and an Advanced stronghold have both been cleared. Simulated against an equal enemy this layout loses ~50–110★ where "strongest in the core" loses ~85–155★; against a weaker enemy ~40–50★. Against an enemy 15%+ stronger, no layout holds (130–190★ lost) — placement decides close matchups.</li>
     <li>The 8 empty slots sit in the fronts, where a squad is worth 1★; Strongholds 1–3 are full. Placement doesn't affect attacking: every squad attacks at full strength wherever it is garrisoned.</li>

@@ -40,7 +40,7 @@ def load(path):
     by = defaultdict(list)
     for r in csv.DictReader(open(path, encoding="utf-8")):
         r["power"] = int(r["power"]); r["sh"] = int(r["stronghold"]); r["rank"] = int(r["rank"])
-        r["warden"] = r["warden"] == "1"; r["hearts"] = 5 if r["warden"] else 4
+        r["warden"] = r["warden"] == "1"; r["hearts"] = 6 if r["warden"] else 5
         r["stars"] = STARS[r["sh"]] * (2 if r["warden"] else 1)
         by[r["sh"]].append(r)
     for l in by.values():
@@ -105,7 +105,7 @@ def phases(enemy, fname):
     w = enemy[first][0]
     ph.append((f"Phase 1 — open the map: clear Stronghold {first}",
                f"{'Opens both 2 and 3' if first == 5 else f'Opens Stronghold {opened[0]}'}; {'the cheapest front' if first == cheapest else 'not the very cheapest front, but worth it for the double unlock'} at ~{fronts[first][0]} attacks for {sum(r['stars'] for r in enemy[first])}★. "
-               f"Warden {w['player']} S{w['squad']} ({fmt(w['power'])}, 5 Hearts) needs attackers over {fmt(w['power']*SAFE)}"
+               f"Warden {w['player']} S{w['squad']} ({fmt(w['power'])}, {w['hearts']} Hearts) needs attackers over {fmt(w['power']*SAFE)}"
                + (" — no baiting needed." if w["cls"] in ("easy", "mid") else f" after baiting (~{w['cost']} attacks)."),
                list(enemy[first])))
     cheap = [r for sh in opened for r in enemy[sh] if r["cls"] == "easy"]
